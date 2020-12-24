@@ -1,6 +1,6 @@
 class dice {
 
-    static rollDX(X) {
+    static rollDX(X, explosive = false) {
         return Math.floor((Math.random() * X) + 1);
     }
 
@@ -13,7 +13,8 @@ class dice {
         return numbers;
     }
 
-    static getXNumbers(numbers, X) {
+    //TODO: change to sumOfNumbers and splice somewhere else
+    static sumOfXNumbers(numbers, X) {
         let result = 0;
         for (let i = 0; i < X; i++) {
             result += numbers[i];
@@ -27,7 +28,7 @@ class dice {
     }
 
     static combineZSmallestNumbers(numbers, Z) {
-        return this.getXNumbers(numbers, Z)
+        return this.sumOfXNumbers(numbers, Z)
     }
 
     static rollYDXKeepZHighest(X = 6, Y = 4, Z = 3) {
