@@ -9,7 +9,35 @@ class dice {
         for (let i = 0; i < Y; i++) {
             numbers.push(this.rollDX(X));
         }
+        numbers.sort();
         return numbers;
+    }
+
+    static getXNumbers(numbers, X) {
+        let result = 0;
+        for (let i = 0; i < X; i++) {
+            result += numbers[i];
+        }
+        return result;
+    }
+
+    static combineZLargestNumbers(numbers, Z) {
+        numbers.reverse();
+        return this.combineZSmallestNumbers(numbers, Z)
+    }
+
+    static combineZSmallestNumbers(numbers, Z) {
+        return this.getXNumbers(numbers, Z)
+    }
+
+    static rollYDXKeepZHighest(X = 6, Y = 4, Z = 3) {
+        let numbers = dice.rollYDX(Y, X);
+        return this.combineZLargestNumbers(numbers, Z);
+    }
+
+    static rollYDXKeepZLowest(X = 6, Y = 4, Z = 3) {
+        let numbers = dice.rollYDX(Y, X);
+        return this.combineZSmallestNumbers(numbers, Z);
     }
 
 }
